@@ -1,5 +1,4 @@
-import java.util.Scanner;
-
+import java.util.*;
 
 public class SnuTekst {
 
@@ -18,7 +17,8 @@ public class SnuTekst {
 				continue;
 			} else {
 				System.out.print("Baklengstekst: ");
-				baklengs(tekst);				
+				baklengs(tekst);
+				
 			}
 
 			System.out.print("Vil du snu en tekst til: (J/N) ");
@@ -29,14 +29,25 @@ public class SnuTekst {
 
 		scanner.close();
 	}
-	
-	public static void baklengs(String tekst){
+
+	private static ArrayList<Integer> antallTegn = new ArrayList<Integer>();;
+
+	public static ArrayList<Integer> getAntallTegn() {
+		return antallTegn;
+	}
+
+	public static void baklengs(String tekst) {
 		int stringLength = tekst.length();
+		
 		if (stringLength > 0) {
+			antallTegn.add(stringLength);
 			System.out.print(tekst.charAt(stringLength - 1));
 			baklengs(tekst.substring(0, stringLength - 1));
-			if(stringLength == 1)
-				System.out.println();
+		}
+		else if(stringLength == 0){
+			System.out.printf("\nAntall tegn ved hver utskrift: %s\n",
+					getAntallTegn().toString());
+			antallTegn = new ArrayList<Integer>();
 		}
 	}
 
