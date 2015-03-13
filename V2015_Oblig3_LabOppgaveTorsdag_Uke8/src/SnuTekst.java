@@ -18,7 +18,7 @@ public class SnuTekst {
 			} else {
 				System.out.print("Baklengstekst: ");
 				baklengs(tekst);
-				
+
 			}
 
 			System.out.print("Vil du snu en tekst til: (J/N) ");
@@ -36,15 +36,20 @@ public class SnuTekst {
 		return antallTegn;
 	}
 
+	// Hjelpemetode
 	public static void baklengs(String tekst) {
-		int stringLength = tekst.length();
-		
-		if (stringLength > 0) {
-			antallTegn.add(stringLength);
-			System.out.print(tekst.charAt(stringLength - 1));
-			baklengs(tekst.substring(0, stringLength - 1));
-		}
-		else if(stringLength == 0){
+		baklengs(tekst, tekst.length());
+	}
+
+	// Rekursive metode
+	public static void baklengs(String tekst, int siste) {
+		// int stringLength = tekst.length();
+
+		if (siste > 0) {
+			antallTegn.add(siste);
+			System.out.print(tekst.charAt(siste - 1));
+			baklengs(tekst, siste - 1);
+		} else if (siste == 0) {
 			System.out.printf("\nAntall tegn ved hver utskrift: %s\n",
 					getAntallTegn().toString());
 			antallTegn = new ArrayList<Integer>();
